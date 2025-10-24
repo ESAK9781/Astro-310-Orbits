@@ -37,11 +37,12 @@ INTIAL_EARTH_POS = 18.6 # initial longitude in deg of i vector at t=0
 
 # a little more difficult to explain. The number of different timestamps the program will check
 # a constellation for in order to ensure proper coverage
-POSITIONAL_TESTING_RESOLUTION = 100
+POSITIONAL_TESTING_RESOLUTION = 1000
 
 POSITIONAL_TESTING_TIME_FUDGE = 5*60 # a maximum 5 minute fudge factor that is added to the 
 # testing times in order to prevent aliasing of any sort
-
+''' Nevermind, get rid of the fudge factor '''
+POSITIONAL_TESTING_TIME_FUDGE = 0
 
 
 ################ Raymarching Algorithm Parameters ########################
@@ -49,3 +50,32 @@ MIN_MARCH_DIST = 0.1
 
 ################ Optimization Controls ####################################
 MAX_E_ITERATIONS = 150 # max iterations when calculating E from M
+
+
+################ MSI Outdated Designs ####################################
+
+# from MSI, see MSI for computations
+MSI_ORBITS = [
+    {
+        "a": 42241.09773,
+        "e": 0.8348021861,
+        "i": 50.825,
+        "raan": 340.5,
+        "v": 180,
+        "w": 245
+    }, {
+        "a": 42241.09773,
+        "e": 0.8348021861,
+        "i": 50.825,
+        "raan": 100.5,
+        "v": 154.5099795,
+        "w": 245
+    }, {
+        "a": 42241.09773,
+        "e": 0.8348021861,
+        "i": 50.825,
+        "raan": 220.5,
+        "v": 205.4900205,
+        "w": 245
+    }
+]

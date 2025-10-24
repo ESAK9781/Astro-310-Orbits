@@ -30,10 +30,14 @@ class MSII_Budget_Summary:
 
 
 class MSII_Coverage_Summary:
-    def __init__(self, adcs_cam_compatible, points_in_los_range, points_checked):
+    def __init__(self, adcs_cam_compatible, points_in_los_range,
+                 points_in_los, points_in_range, points_checked, closest_approach):
         self.adcs_cam_compatible = adcs_cam_compatible
         self.points_in_los_range = points_in_los_range
+        self.points_in_los = points_in_los
+        self.points_in_range = points_in_range
         self.points_checked = points_checked
+        self.closest_approach = closest_approach
         self.percent_coverage = points_in_los_range / points_checked # percentage of points we saw
         if (not adcs_cam_compatible):
             self.percent_coverage = 0 # yeah, we probably cant actually see anything
@@ -45,6 +49,9 @@ class MSII_Coverage_Summary:
         output_string += f"\t% Coverage:              {self.percent_coverage}%\n"
         output_string += f"\tPoints Sampled:          {self.points_checked}\n"
         output_string += f"\tPoints in range and LOS: {self.points_in_los_range}\n"
+        output_string += f"\tPoints in range:         {self.points_in_range}\n"
+        output_string += f"\tPoints in LOS:           {self.points_in_los}\n"
+        output_string += f"\tClosest Approach:        {self.closest_approach} km\n"
         return output_string
     
 

@@ -5,7 +5,7 @@ from CoolGeometry import rot_x, rot_y, rot_z, shoot_astro_ray
 from MSII_Constraints import MSII_Budget_Summary, MSII_Coverage_Summary, MSII_Orbit_Viability_Summary
 from MSII_Constraints import MSII_Comprehensive_Constellation_Summary, MSII_Concise_Constellation_Summary
 from MSII_Constraints import MSII_Volume_Summary
-from Sensing_Formulas import assess_camera_adcs_compatibility, get_payload_max_height
+from Formula_Sheet import assess_camera_adcs_compatibility, get_payload_max_height
 from pretty_outputs import indent_section
 import math
 import random
@@ -80,6 +80,9 @@ class MSII_Constellation:
 
         total_points_checked = 0 # track the amount of points we check
         total_points_in_los_and_range = 0 # track how many times we see them when we check
+        total_points_in_los = 0 # track how many times they are in los
+        total_points_in_range = 0 # track how many times they are in range
+        closest_approach = float("inf") # set the closest approach to infinity
 
         vision_range = get_payload_max_height(self.payload, MIN_RESOLUTION)
 
@@ -88,8 +91,8 @@ class MSII_Constellation:
         target_points_t0 = [] # to store the position of the target points at t=0 in ijk coords
         for i in range(len(POINTS_OF_INTEREST)):
             point_of_interest = [R_EARTH + 5, 0, 0] # initialize the point of interest to R_Earth, 0, 0
-            point_of_interest = rot_y(point_of_interest, math.radians(-POINTS_OF_INTEREST[i][0]))
-            point_of_interest = rot_z(point_of_interest, math.radians(POINTS_OF_INTEREST[i][1] - INTIAL_EARTH_POS))
+            point_of_interest = rot_y(point_of_interest, -POINTS_OF_INTEREST[i][0]) # TODO removed a minus here on the angle for testing
+            point_of_interest = rot_z(point_of_interest, POINTS_OF_INTEREST[i][1] - INTIAL_EARTH_POS)
             target_points_t0.append(point_of_interest)
 
         for i in range(POSITIONAL_TESTING_RESOLUTION):
@@ -98,7 +101,7 @@ class MSII_Constellation:
                                                     POSITIONAL_TESTING_TIME_FUDGE)
             
             target_points_t = [] # track the positions of the points of interest at time t
-            delta_angle = math.radians(EARTH_ROTATION_PER_SEC * (t % DAY_AS_SECONDS)) # we just assume it rotates once a day
+            delta_angle = EARTH_ROTATION_PER_SEC * (t % DAY_AS_SECONDS) # we just assume it rotates once a day
             # this is not necessarily true, but it is a nice simplification
             
             for point in target_points_t0:
@@ -115,16 +118,27 @@ class MSII_Constellation:
 
             for point in target_points_t: # loop over all the target points
                 total_points_checked += 1 # update our first counter
+                can_see = False
+                in_los = False
+                in_range = False
                 for sat in sat_pos_t:
                     los_dist = shoot_astro_ray(sat, point)
                     # check that we have los (los_dist != -1) and that it is in range
-                    can_see : bool = ((los_dist != -1) and (los_dist < vision_range))
+                    can_see = can_see or ((los_dist != -1) and (los_dist < vision_range))
+                    in_los = in_los or (los_dist != -1)
+                    in_range = in_range or (math.dist(sat, point) < vision_range)
+                    closest_approach = min(closest_approach, math.dist(sat, point))
 
-                    if (can_see):
-                        total_points_in_los_and_range += 1 # update our seen counter
-                        break # we don't need to check other satellites, this point is already seen
+                if (can_see):
+                    total_points_in_los_and_range += 1 # update our seen counter
+                if (in_los):
+                    total_points_in_los += 1 # update our los counter
+                if (in_range):
+                    total_points_in_range += 1 # update our range counter
 
-        return MSII_Coverage_Summary(cam_adcs_compatibility, total_points_in_los_and_range, total_points_checked)
+        return MSII_Coverage_Summary(cam_adcs_compatibility, total_points_in_los_and_range, 
+                                     total_points_in_los, total_points_in_range, 
+                                     total_points_checked, closest_approach)
 
     
     # check if there is anything goofy with our orbits that would make them unviable
