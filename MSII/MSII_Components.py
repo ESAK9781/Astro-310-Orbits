@@ -1,3 +1,9 @@
+##############################
+# MSII_Components.py
+# Author: Elijah Sakamoto
+# Documentation: None
+##############################
+
 
 PAYLOADS = [ # from table 2
     { # Astra Hi-Res Imager

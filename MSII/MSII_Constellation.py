@@ -1,3 +1,10 @@
+##############################
+# MSII_Constellation.py
+# Author: Elijah Sakamoto
+# Documentation: None
+##############################
+
+
 from MSII_Orbit import MSII_Orbit
 from MSII_useful_consts import *
 from MSII_Components import *

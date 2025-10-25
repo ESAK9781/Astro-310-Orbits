@@ -1,3 +1,9 @@
+##############################
+# CoolGeometry.py
+# Author: Elijah Sakamoto
+# Documentation: None
+##############################
+
 import math
 from MSII_useful_consts import *
 

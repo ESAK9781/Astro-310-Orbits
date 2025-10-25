@@ -1,3 +1,9 @@
+##############################
+# MSII_useful_consts.py
+# Author: Elijah Sakamoto
+# Documentation: None
+##############################
+
 
 ########### Physical / Mathematical Constants ##########
 MIU = 398600.5 # km^3 s^-2

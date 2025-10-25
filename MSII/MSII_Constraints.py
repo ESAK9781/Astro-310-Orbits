@@ -1,3 +1,10 @@
+##############################
+# MSII_Constraints.py
+# Author: Elijah Sakamoto
+# Documentation: None
+##############################
+
+
 from MSII_useful_consts import *
 from pretty_outputs import indent_section
 

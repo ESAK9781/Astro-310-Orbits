@@ -1,3 +1,10 @@
+##############################
+# FormulaSheet.py
+# Author: Elijah Sakamoto
+# Documentation: None
+##############################
+
+
 '''
 Just a nice place to put a bunch of formulas from / derived from the 
 formula sheet that didn't fit anywhere else.
