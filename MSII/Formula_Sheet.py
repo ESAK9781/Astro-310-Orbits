@@ -139,3 +139,18 @@ def perigee_h_to_e(semimajor_axis, perigee_h, check_e_vals=True):
         e_solution = max(min(e_solution, 0.9999), 0.0001)
     
     return e_solution
+
+
+# directly from the formula sheet
+def calc_swath_width(payload, altitude):
+    sw = (2 * payload["det_rad"] * altitude) / payload["fl"]
+    return sw
+
+
+# also directly from the formula sheet
+def calc_payload_fov(payload):
+    return math.degrees(2 * math.atan(payload["det_rad"] / payload["fl"]))
+
+# direct from the formula sheet
+def get_ground_pointing_accuracy(adcs, altitude):
+    return adcs["pointing accuracy"] * altitude

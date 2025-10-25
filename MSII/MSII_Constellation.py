@@ -91,7 +91,9 @@ class MSII_Constellation:
         target_points_t0 = [] # to store the position of the target points at t=0 in ijk coords
         for i in range(len(POINTS_OF_INTEREST)):
             point_of_interest = [R_EARTH + 5, 0, 0] # initialize the point of interest to R_Earth, 0, 0
-            point_of_interest = rot_y(point_of_interest, -POINTS_OF_INTEREST[i][0]) # TODO removed a minus here on the angle for testing
+            
+            # rotate it around to get it in the right spot
+            point_of_interest = rot_y(point_of_interest, -POINTS_OF_INTEREST[i][0]) 
             point_of_interest = rot_z(point_of_interest, POINTS_OF_INTEREST[i][1] - INTIAL_EARTH_POS)
             target_points_t0.append(point_of_interest)
 
