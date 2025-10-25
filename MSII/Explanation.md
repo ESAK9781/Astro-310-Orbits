@@ -1,3 +1,9 @@
+Explanation.md
+
+Author: Elijah Sakamoto
+
+Documentation: None
+
 # A Brief Explanation of Some More Complicated Parts of the Software
 
 ## What is this?
