@@ -22,7 +22,7 @@ def km_to_m(km):
 
 # take an imaging payload, use it to calculate the max height we can go to
 def get_payload_max_height(payload, min_resolution_m):
-    return ((payload["aperture"] * min_resolution_m) / (2.44 * 2.44 * payload["max_wl"])) / 1000
+    return ((payload["aperture"] * min_resolution_m) / (2.44 * payload["max_wl"])) / 1000
 
 
 # checks that the adcs and camera will work together so we can capture what we aim at.
@@ -161,3 +161,14 @@ def calc_payload_fov(payload):
 # direct from the formula sheet
 def get_ground_pointing_accuracy(adcs, altitude):
     return adcs["pointing accuracy"] * altitude
+
+# compute a dot product of two vectors
+def dot_product(vect_a, vect_b):
+    output = 0
+    for i in range(len(vect_a)):
+        output += vect_a[i] * vect_b[i]
+    return output
+
+# compute the magnitude of a 3d vector
+def mag_of(vect):
+    return math.dist([0, 0, 0], vect)
