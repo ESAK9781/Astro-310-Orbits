@@ -10,7 +10,7 @@ Just a nice place to put a bunch of formulas from / derived from the
 formula sheet that didn't fit anywhere else.
 '''
 import math
-from MSII_useful_consts import MIU, R_EARTH, MAX_E_ITERATIONS
+from MSIII_useful_consts import MIU, R_EARTH, MAX_E_ITERATIONS
 
 # convert hours to seconds
 def h_to_sec(hours : float) -> float:
@@ -46,10 +46,14 @@ def get_payload_resolution(payload, height):
 
 
 # accepts a list of [deg N, deg E] pairs and gets the average latitude of them
+# MSIII UPDATED: changed to maximum latitude in accordance with instructor feedback 
 def get_avg_latitude(points):
+    max_lat = points[0][0]
     total_lat = 0
     for point in points:
+        max_lat = max(max_lat, point[0])
         total_lat += point[0]
+    return max_lat
     return total_lat / len(points)
 
 # accepts a list of [deg N, deg E] pairs and gets the average longitude of them
