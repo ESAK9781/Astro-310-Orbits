@@ -18,11 +18,12 @@ import math
 import random
 
 class MSIII_Satellite:
-    def __init__(self):
-        print("Using default constructor.")
-        self.orbit = MSIII_Orbit(0, 0, 0, 0, 0, 0)
+    def __init__(self, sat_obj=None):
+        if sat_obj == None:
+            print("Using default constructor.")
+            self.orbit = MSIII_Orbit(0, 0, 0, 0, 0, 0)
+            return
         
-    def __init__(self, sat_obj):
         self.orbit = MSIII_Orbit(
             a=sat_obj["a"],
             e=sat_obj["e"],
