@@ -202,7 +202,6 @@ class MSIII_Constellation:
             point_index = -1 # keep track of which point we are on
             for point in target_points_t: # loop over all the target points
                 point_index += 1 # increment upool
-                total_points_checked += 1 # update our first counter
                 can_see = False
                 in_los = False
                 in_range = False
@@ -267,11 +266,13 @@ class MSIII_Constellation:
         budget_summary = self.assess_budget()
         cover_summary = self.assess_coverage()
         volume_summary = self.assess_volume()
+        visitation_summary = self.assess_visitation()
 
         return MSIII_Comprehensive_Constellation_Summary(orbit_summary,
                                                         budget_summary,
                                                         cover_summary, 
-                                                        volume_summary)
+                                                        volume_summary,
+                                                        visitation_summary)
     
 
     def to_string(self, const_name=""):
