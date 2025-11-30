@@ -1,5 +1,5 @@
 ##############################
-# MSII_Orbit.py
+# MSIII_Orbit.py
 # Author: Elijah Sakamoto
 # Documentation: None
 ##############################
@@ -7,7 +7,7 @@
 
 import math
 
-from MSII_useful_consts import *
+from MSIII_useful_consts import *
 
 
 # fix angles over 360 or under 0 to their counterpart on that range
@@ -25,7 +25,7 @@ def loop_angle(theta, radians=False):
             theta += 360
         return theta
 
-class MSII_Orbit:
+class MSIII_Orbit:
     def __init__(self, other_orbit):
         self.i = other_orbit.i
         self.a = other_orbit.a
