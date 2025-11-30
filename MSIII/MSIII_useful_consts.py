@@ -34,7 +34,7 @@ POINTS_OF_INTEREST = [ # [deg N, deg E]
 
 
 
-MIN_RESOLUTION = 4 # smallest feature we need to see in meters
+MIN_RESOLUTION = 3.99 # smallest feature we need to see in meters
 
 # collected from BORG simulation
 INTIAL_EARTH_POS = 18.6 # initial longitude in deg of i vector at t=0

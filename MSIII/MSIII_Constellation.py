@@ -20,8 +20,8 @@ import random
 class MSIII_Satellite:
     def __init__(self, sat_obj=None):
         if sat_obj == None:
-            print("Using default constructor.")
-            self.orbit = MSIII_Orbit(0, 0, 0, 0, 0, 0)
+            print("Using default satellite constructor, make sure to add orbits.")
+            self.orbit = None
             return
         
         self.orbit = MSIII_Orbit(
