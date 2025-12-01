@@ -150,8 +150,8 @@ def perigee_h_to_e(semimajor_axis, perigee_h, check_e_vals=True):
     if (check_e_vals):
         assert(e_solution > 0) # make sure nothing funky is going on (i.e. invalid solutions)
         assert(e_solution < 1)
-    else:
-        e_solution = max(min(e_solution, 0.9999), 0.0001)
+    
+    e_solution = max(min(e_solution, 0.9999), 0.0001)
     
     return e_solution
 

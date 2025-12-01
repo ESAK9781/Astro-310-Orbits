@@ -27,15 +27,6 @@ def loop_angle(theta, radians=False):
         return theta
 
 class MSIII_Orbit:
-    def __init__(self, other_orbit):
-        self.i = other_orbit.i
-        self.a = other_orbit.a
-        self.e = other_orbit.e
-        self.raan = other_orbit.raan
-        self.v = other_orbit.v
-        self.w = other_orbit.w
-        self.n = other_orbit.n
-        self.period = other_orbit.period
 
     def __init__(self, a, e, i, raan, w, v):
         self.a = a
@@ -58,6 +49,16 @@ class MSIII_Orbit:
         self.n = math.sqrt(MIU / math.pow(self.a, 3)) # from formula sheet
         self.period = (2 * math.pi) / self.n # from formula sheet
         
+    def duplicate(self):
+        return MSIII_Orbit(
+            a = self.a,
+            e = self.e,
+            i = self.i, 
+            raan = self.raan,
+            w = self.w,
+            v = self.v
+        )
+
     def recomp_meta_vars(self):
         if (self.a <= 0): # patch negative semimajor axis bug
             self.a = 0.00000001
