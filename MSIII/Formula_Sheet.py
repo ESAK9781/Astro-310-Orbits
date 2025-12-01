@@ -176,3 +176,22 @@ def dot_product(vect_a, vect_b):
 # compute the magnitude of a 3d vector
 def mag_of(vect):
     return math.dist([0, 0, 0], vect)
+
+
+# accepts both arguments in degrees
+# returns the ascending node launch azimuth
+def compute_gamma(alpha_degrees, latitude_degrees):
+    cos_b = math.cos(math.radians(alpha_degrees)) / math.cos(math.radians(latitude_degrees))
+    return math.degrees(math.acos(cos_b))
+
+def compute_lowercase_delta(gamma_degrees, alpha_degrees):
+    cos_d = math.cos(math.radians(gamma_degrees)) / math.sin(math.radians(alpha_degrees))
+    return math.degrees(math.acos(cos_d))
+
+# returns the angle updated to be between 0 and 360 degrees
+def correct_angle(theta):
+    while (theta < 0):
+        theta += 360
+    while (theta > 360):
+        theta -= 360
+    return theta
