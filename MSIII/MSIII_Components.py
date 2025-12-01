@@ -136,3 +136,26 @@ GROUND_STATION_ANNUAL_COST = 3000000 # yearly cost to operate the ground station
 AVERAGE_ANTENNA_COST = (450000 + 300000 + 375000) / 3 # average cost for an antenna
 AVERAGE_PROPULSION_COST = (200000 + 450000 + 600000) / 3 # average cost for an propulsion system
 AVERAGE_ELECTRICAL_COST = (350000 + 550000 + 900000) / 3 # average cost for an electrical system
+
+
+LAUNCH_SITES = [
+    {
+        "name": "Cape Canaveral",
+        "latitude": 28.5,
+        "longitude": 80.55,
+        "min_azimuth": 35,
+        "max_azimuth": 120
+    }, {
+        "name": "Vandenberg",
+        "latitude": 34.6,
+        "longitude": 120.6,
+        "min_azimuth": 140,
+        "max_azimuth": 201
+    }, {
+        "name": "Mid-Atlantic Regional Spaceport",
+        "latitude": 37.8,
+        "longitude": 75.5,
+        "min_azimuth": 90,
+        "max_azimuth": 160
+    }
+]
