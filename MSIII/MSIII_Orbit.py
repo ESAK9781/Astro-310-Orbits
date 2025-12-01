@@ -227,7 +227,13 @@ class MSIII_Orbit:
         tof = n_tof / self.n
         
         return tof
-        
+    
+    def get_R(self): # verbatum from the formula sheet
+        return (self.a * (1 - (self.e ** 2))) / (1 + self.e * math.cos(math.radians(self.v)))
+    
+    def get_vel(self): # verbatum from the formula sheet
+        r = self.get_R()
+        return math.sqrt(2 * ((MIU / r) - (MIU / (2 * self.a))))
 
 
 
