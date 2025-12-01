@@ -19,7 +19,7 @@ PAYLOADS = [ # from table 2
         "length": 2, # m
         "width": 1.5, # m
         "height": 3, # m
-        "tot_mass": 200, # kg
+        "mass": 200, # kg
         "tot_pow": 225, # W
         "cost": 31000000, # $
         "delivery": 12 # months
@@ -36,7 +36,7 @@ PAYLOADS = [ # from table 2
         "length": 1.5, # m
         "width": 1, # m
         "height": 2, # m
-        "tot_mass": 125, # kg
+        "mass": 125, # kg
         "tot_pow": 185, # W
         "cost": 22000000, # $
         "delivery": 10 # months
@@ -53,7 +53,7 @@ PAYLOADS = [ # from table 2
         "length": 1, # m
         "width": 1, # m
         "height": 2, # m
-        "tot_mass": 100, # kg
+        "mass": 100, # kg
         "tot_pow": 190, # W
         "cost": 18000000, # $
         "delivery": 10 # months
@@ -70,7 +70,7 @@ PAYLOADS = [ # from table 2
         "length": 0.6, # m
         "width": 0.6, # m
         "height": 0.6, # m
-        "tot_mass": 25, # kg
+        "mass": 25, # kg
         "tot_pow": 75, # W
         "cost": 5000000, # $
         "delivery": 3 # months
@@ -159,3 +159,9 @@ LAUNCH_SITES = [
         "max_azimuth": 160
     }
 ]
+
+
+
+# currently using propulsion system 1
+PROPULSION_MASS = 25
+PROPULSION_ISP = 225

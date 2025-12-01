@@ -12,7 +12,7 @@ DAY_AS_SECONDS = 24 * 60 * 60 # s
 EARTH_ROTATION_PER_SEC = 360 / DAY_AS_SECONDS # deg/sec
 MIN_DRAGLESS_ALTITUDE = 600 # how many km to stay above Earth to avoid drag perturbations
 GEOSYNCHRONOUS_SEMIMAJOR_AXIS = 42241.09773 # a necessary to have ~24 hour period
-
+G_0 = 9.81 # acceleration of gravity on Earth in m/s^2
 
 ########### Project Specifications ###################
 TOTAL_DEV_BUDGET = 225000000 # $
