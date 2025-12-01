@@ -8,6 +8,7 @@
 import math
 
 from MSIII_useful_consts import *
+from Formula_Sheet import *
 
 
 # fix angles over 360 or under 0 to their counterpart on that range
@@ -202,6 +203,29 @@ class MSIII_Orbit:
     def get_position_at_time(self, time):
         v_time = math.radians(self.get_v_at_time(time))
         return self.get_position_at_v(v_time) # convert v to a position vector
+    
+    # accepts a v in degrees
+    # this is more or less copied directly from the formula sheet
+    def get_t_until_v(self, v): 
+        vi = math.radians(self.v)
+        vf = math.radians(v)
+        
+        cos_ef = (self.e + math.cos(vf)) / (1 + self.e * math.cos(vf))
+        cos_ei = (self.e + math.cos(vi)) / (1 + self.e * math.cos(vi))
+        ef = math.acos(cos_ef)
+        if (vf > math.pi): # half plane check
+            ef = (2 * math.pi) - ef
+        ei = math.acos(cos_ei)
+        if (vi > math.pi): # half plane check
+            ei = (2 * math.pi) - ei
+            
+        mf = ef - self.e * math.sin(ef)
+        mi = ei - self.e * math.sin(ei)
+        
+        n_tof = correct_angle_r(mf - mi)
+        tof = n_tof / self.n
+        
+        return tof
         
 
 
