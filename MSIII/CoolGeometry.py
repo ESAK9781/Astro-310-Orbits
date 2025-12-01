@@ -6,6 +6,7 @@
 
 import math
 from MSIII_useful_consts import *
+from Formula_Sheet import mag_of
 
 # nice utility function to calculate the dot product of two numbers
 def dot_product(vec_a, vec_b):
@@ -13,6 +14,11 @@ def dot_product(vec_a, vec_b):
     for i in range(len(vec_a)):
         out += vec_a[i] * vec_b[i]
     return out
+
+def comp_angle(vec_a, vec_b):
+    dot = dot_product(vec_a, vec_b)
+    cos_theta = dot / (mag_of(vec_a) * mag_of(vec_b))
+    return math.degrees(math.acos(cos_theta))
 
 class Sphere:
     def __init__(self, pos, r):

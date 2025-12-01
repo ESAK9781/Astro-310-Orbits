@@ -235,5 +235,7 @@ class MSIII_Orbit:
         r = self.get_R()
         return math.sqrt(2 * ((MIU / r) - (MIU / (2 * self.a))))
 
-
+    def simulate(self, delta_t): # move the orbit by delta_t in its natural course
+        self.v = self.get_v_at_time(delta_t)
+        self.recomp_meta_vars()
 

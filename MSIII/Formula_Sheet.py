@@ -207,3 +207,7 @@ def correct_angle_r(theta):
     while (theta > math.pi * 2):
         theta -= 2 * math.pi
     return theta
+
+# derived from the formula sheet
+def r_apogee_and_a_to_e(r_apogee, a):
+    return (r_apogee / a) - 1

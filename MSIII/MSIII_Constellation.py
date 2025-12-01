@@ -288,5 +288,6 @@ class MSIII_Constellation:
 
         return output_str
 
-
-
+    def simulate(self, delta_t): # advance the whole constellation by delta_t seconds
+        for sat in self.sats:
+            sat.orbit.simulate(delta_t)
