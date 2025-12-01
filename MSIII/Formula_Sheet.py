@@ -16,6 +16,10 @@ from MSIII_useful_consts import MIU, R_EARTH, MAX_E_ITERATIONS
 def h_to_sec(hours : float) -> float:
     return (hours * 60 * 60)
 
+# convert seconds to hours
+def sec_to_h(seconds : float) -> float:
+    return (seconds / (60 * 60))
+
 # convert km to meters
 def km_to_m(km):
     return km * 1000
@@ -194,4 +198,12 @@ def correct_angle(theta):
         theta += 360
     while (theta > 360):
         theta -= 360
+    return theta
+
+# same as correct_angle, only for radians
+def correct_angle_r(theta):
+    while (theta < 0):
+        theta += 2 * math.pi
+    while (theta > math.pi * 2):
+        theta -= 2 * math.pi
     return theta
