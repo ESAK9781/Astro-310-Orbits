@@ -94,6 +94,7 @@ class MSIII_Orbit:
         out += "\tv    : " + str(self.v) + "\n"
         return out.strip()
 
+    # accepts v in radians
     def get_position_at_v(self, v):
         r = (self.a * (1 - math.pow(self.e, 2))) / (1 + self.e * math.cos(v)) # from formula sheet
         x = r * math.cos(v) # x position on orbital plane
@@ -162,8 +163,8 @@ class MSIII_Orbit:
 
         return pos
 
-    # returns a position vector based on the time in seconds, uses whole numbers
-    def get_position_at_time(self, time):
+        
+    def get_v_at_time(self, time):
         time = math.floor(time) % math.floor(self.period)
 
         vi = math.radians(self.v)
@@ -194,9 +195,13 @@ class MSIII_Orbit:
         vf = math.acos((cos_ef - self.e) / (1 - self.e * cos_ef)) # from formula sheet
         if (ef > math.pi): # half-plane check
             vf = (2 * math.pi) - vf
-
-
-        return self.get_position_at_v(vf) # convert v to a position vector
+        
+        return math.degrees(vf)
+    
+    # returns a position vector based on the time in seconds, uses whole numbers
+    def get_position_at_time(self, time):
+        v_time = math.radians(self.get_v_at_time(time))
+        return self.get_position_at_v(v_time) # convert v to a position vector
         
 
 
