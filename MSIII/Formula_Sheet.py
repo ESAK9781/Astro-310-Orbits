@@ -24,6 +24,9 @@ def sec_to_h(seconds : float) -> float:
 def km_to_m(km):
     return km * 1000
 
+def m_to_km(m):
+    return m / 1000
+
 # take an imaging payload, use it to calculate the max height we can go to
 def get_payload_max_height(payload, min_resolution_m):
     return ((payload["aperture"] * min_resolution_m) / (2.44 * payload["max_wl"])) / 1000
