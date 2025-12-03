@@ -214,3 +214,14 @@ def correct_angle_r(theta):
 # derived from the formula sheet
 def r_apogee_and_a_to_e(r_apogee, a):
     return (r_apogee / a) - 1
+
+# take a siderial time and convert it to an (hours, minutes, seconds) string
+def siderial_to_hms(sid):
+    hours = sid * (24./360.) # convert to hours
+    t_hours = math.floor(hours)
+    hours -= t_hours
+    t_minutes = math.floor(60 * hours)
+    hours -= t_minutes / 60
+    t_seconds = 60 * 60 * hours
+    
+    return f"{t_hours} h : {t_minutes} m : {t_seconds} s"
